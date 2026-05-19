@@ -2,9 +2,9 @@
 
 Generate smooth gradient wallpapers with six vertical strips and anisotropic color blending. Fully customizable parameters, live preview.
 
-[中文说明](README_zh.md)
+[中文](README_zh.md)
 
-<p align="center"><img src="preview.jpeg" alt="Preview" width="80%"></p>
+<p align="center"><img src="preview.jpeg" alt="Preview" width="90%"></p>
 
 ## Quick Start
 
@@ -12,7 +12,7 @@ Open `luminancia.html` in a modern browser. Zero dependencies.
 
 ## Features
 
-- 2-12 custom colors from a 35-color palette
+- 2-12 custom colors from a 100-color palette
 - 4 aspect ratios + custom export resolution
 - 4 symmetry modes: X, Translate, Y, Center
 - 7 Gaussian segments per strip with independent angle and spread

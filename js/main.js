@@ -1,35 +1,131 @@
-window.resetAll=resetAll;window.randomizeAll=randomizeAll;window.doExport=doExport;window.importJSON=importJSON;window.doImport=doImport;
-window.zoomIn=zoomIn;window.zoomOut=zoomOut;window.zoomFit=zoomFit;window.zoom100=zoom100;
-window.onViewChange=onViewChange;window.loadRef=loadRef;window.clearRef=clearRef;
-window.onGlobalP=onGlobalP;window.clearMarker=clearMarker;
-window.isolateSegment=isolateSegment;window.clearIsolation=clearIsolation;window.exportWallpaper=exportWallpaper;window.onNColorsChange=onNColorsChange;window.randomizeSeq=randomizeSeq;window.toggleTheme=toggleTheme;window.toggleLang=toggleLang;window.randomizeColors=randomizeColors;
+// Expose global functions to inline onclick handlers
+window.resetAll = resetAll;
+window.randomizeAll = randomizeAll;
+window.doExport = doExport;
+window.importJSON = importJSON;
+window.doImport = doImport;
+window.zoomIn = zoomIn;
+window.zoomOut = zoomOut;
+window.zoomFit = zoomFit;
+window.zoom100 = zoom100;
+window.onViewChange = onViewChange;
+window.loadRef = loadRef;
+window.clearRef = clearRef;
+window.onGlobalP = onGlobalP;
+window.clearMarker = clearMarker;
+window.isolateSegment = isolateSegment;
+window.clearIsolation = clearIsolation;
+window.exportWallpaper = exportWallpaper;
+window.onNColorsChange = onNColorsChange;
+window.randomizeSeq = randomizeSeq;
+window.toggleTheme = toggleTheme;
+window.toggleLang = toggleLang;
+window.randomizeColors = randomizeColors;
 
-function init(){
-  switchLang('en');_lang='en';document.getElementById('langBtn').textContent='EN';
-  document.documentElement.classList.add('light');document.getElementById('themeBtn').textContent=T.themeLight;
-  document.getElementById('resetBtn').textContent=T.reset;
-  document.getElementById('exportImgBtn').textContent=T.exportImg;
-  document.getElementById('exportJsonBtn').textContent=T.exportJSON;
-  document.getElementById('importJsonBtn').textContent=T.importJSON;
-  document.getElementById('fitBtn').textContent=T.fitBtn;
-  document.getElementById('zoomOutBtn').title=T.zoomOut;
-  document.getElementById('zoomInBtn').title=T.zoomIn;
-  document.getElementById('fitBtn').title=T.zoomFitTitle;
-  document.getElementById('clearMarkerBtn').textContent=T.clearMarkerBtn;document.getElementById('clearMarkerBtn').title=T.clearMarkerTitle;
-  document.getElementById('uploadBtn').textContent=T.upload;document.getElementById('clearRefBtn').textContent=T.clear;
-  document.getElementById('footer').textContent=T.footer;
-  document.getElementById('previewLabel').textContent=T.preview;
-  document.getElementById('refImageLabel').textContent=T.refImage;
+function init() {
+  // Set initial language
+  switchLang('en');
+  _lang = 'en';
+  document.getElementById('langBtn').textContent = 'EN';
+
+  // Set title from locale
+  document.title = T.title;
+  document.querySelector('.sidebar h2').textContent = T.title;
+
+  // Light theme by default
+  document.documentElement.classList.add('light');
+  document.getElementById('themeBtn').textContent = T.themeLight;
+
+  // Set button and label text from locale
+  document.getElementById('resetBtn').textContent = T.reset;
+  document.getElementById('exportImgBtn').textContent = T.exportImg;
+  document.getElementById('exportJsonBtn').textContent = T.exportJSON;
+  document.getElementById('importJsonBtn').textContent = T.importJSON;
+  document.getElementById('fitBtn').textContent = T.fitBtn;
+  document.getElementById('zoomOutBtn').title = T.zoomOut;
+  document.getElementById('zoomInBtn').title = T.zoomIn;
+  document.getElementById('fitBtn').title = T.zoomFitTitle;
+  document.getElementById('clearMarkerBtn').textContent = T.clearMarkerBtn;
+  document.getElementById('clearMarkerBtn').title = T.clearMarkerTitle;
+  document.getElementById('uploadBtn').textContent = T.upload;
+  document.getElementById('clearRefBtn').textContent = T.clear;
+  document.getElementById('footer').textContent = T.footer;
+  document.getElementById('previewLabel').textContent = T.preview;
+  document.getElementById('refImageLabel').textContent = T.refImage;
+
+  // Build UI
   buildViewMode();
-  initRulerDOM();genDefaults();buildStripTabs();buildSegmentUI();renderPreview(window._viewStrip);applyZoom();
-  document.fonts.ready.then(()=>renderGuidesOverlay(window._viewStrip));
-  setTimeout(()=>{const wrap=document.getElementById("scrollWrap");const outputCenterY=((50+50)/200)*CONFIG.PH*zoomLevel;wrap.scrollTop=outputCenterY-wrap.clientHeight/2;wrap.scrollLeft=(wrap.scrollWidth-wrap.clientWidth)/2;},120);
-  document.getElementById('cv').addEventListener('click',function(e){onCanvasClick(e,'cv');});
-  document.getElementById('refCv').addEventListener('click',function(e){onCanvasClick(e,'refCv');});
-  document.getElementById('scrollWrap').addEventListener('wheel',function(e){if(e.ctrlKey||e.metaKey){e.preventDefault();if(e.deltaY<0)zoomIn();else zoomOut();}},{passive:false});
-  const sidebar=document.querySelector('.sidebar');let resizing=false,startX=0,startW=0;
-  sidebar.addEventListener('mousedown',e=>{if(e.offsetX>sidebar.offsetWidth-8){resizing=true;startX=e.clientX;startW=sidebar.offsetWidth;e.preventDefault();}});
-  document.addEventListener('mousemove',e=>{if(resizing){const w=Math.max(320,startW+e.clientX-startX);sidebar.style.width=w+'px';sidebar.style.minWidth=w+'px';}});
-  document.addEventListener('mouseup',()=>{resizing=false;});
+  initRulerDOM();
+  genDefaults();
+  buildStripTabs();
+  buildSegmentUI();
+  renderPreview(window._viewStrip);
+  applyZoom();
+
+  // Re-render overlay once fonts are loaded (canvas text)
+  document.fonts.ready.then(function () {
+    renderGuidesOverlay(window._viewStrip);
+  });
+
+  // Scroll the preview to vertical center after layout
+  setTimeout(function () {
+    var wrap = document.getElementById('scrollWrap');
+    var outputCenterY = ((50 + 50) / 200) * CONFIG.PH * zoomLevel;
+    wrap.scrollTop = outputCenterY - wrap.clientHeight / 2;
+    wrap.scrollLeft = (wrap.scrollWidth - wrap.clientWidth) / 2;
+  }, 120);
+
+  // Canvas click to place marker
+  document.getElementById('cv').addEventListener('click', function (e) {
+    onCanvasClick(e, 'cv');
+  });
+  document.getElementById('refCv').addEventListener('click', function (e) {
+    onCanvasClick(e, 'refCv');
+  });
+
+  // Ctrl+wheel zoom on the scrollable area
+  document.getElementById('scrollWrap').addEventListener('wheel', function (e) {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      if (e.deltaY < 0) {
+        zoomIn();
+      } else {
+        zoomOut();
+      }
+    }
+  }, { passive: false });
+
+  // Sidebar resize via drag handle
+  var sidebar = document.querySelector('.sidebar');
+  var resizing = false;
+  var startX = 0;
+  var startW = 0;
+
+  sidebar.addEventListener('mousedown', function (e) {
+    if (e.offsetX > sidebar.offsetWidth - 8) {
+      resizing = true;
+      startX = e.clientX;
+      startW = sidebar.offsetWidth;
+      e.preventDefault();
+    }
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (resizing) {
+      var w = Math.max(320, startW + e.clientX - startX);
+      sidebar.style.width = w + 'px';
+      sidebar.style.minWidth = w + 'px';
+    }
+  });
+
+  document.addEventListener('mouseup', function () {
+    resizing = false;
+  });
 }
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+
+// Boot
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}

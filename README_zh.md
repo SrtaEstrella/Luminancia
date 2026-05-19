@@ -1,10 +1,10 @@
-# Luminancia - 彩虹壁纸生成器
+# Luminancia 流光意彩 - 彩虹壁纸生成器
 
 基于各向异性高斯混合模型的渐变壁纸生成工具。六条竖直色带拼接，颜色有机交融。
 
 [English](README.md)
 
-<p align="center"><img src="preview.jpeg" alt="预览" width="80%"></p>
+<p align="center"><img src="preview_zh.jpeg" alt="预览" width="90%"></p>
 
 ## 快速开始
 
@@ -12,7 +12,7 @@
 
 ## 功能
 
-- 从 35 色色卡中自选 2-12 种颜色
+- 从 100 色色卡中自选 2-12 种颜色
 - 4 种宽高比预设 + 自定义导出分辨率
 - 4 种对称模式：X 对称、平移、Y 对称、中心对称
 - 每条带 7 个色段，每个色段独立控制位置、扩散、角度、离心率
