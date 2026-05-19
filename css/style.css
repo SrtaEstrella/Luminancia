@@ -95,3 +95,10 @@ select option{color:#ccc;background:var(--bg-input);font-size:15px}
 .dropdown-row label{font-size:15px;color:var(--text-accent);white-space:nowrap}
 .dropdown-row label em{color:#ccc;font-style:normal;font-variant-numeric:tabular-nums;font-size:15px}
 .dropdown-row select{font-size:13px;background:var(--bg-input);color:var(--text);border:1px solid var(--border-subtle);border-radius:3px;padding:2px 4px;flex:1;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+
+/* ---- Custom Scrollbar ---- */
+.sidebar::-webkit-scrollbar,.scroll-wrap::-webkit-scrollbar{width:6px;height:6px}
+.sidebar::-webkit-scrollbar-track,.scroll-wrap::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb,.scroll-wrap::-webkit-scrollbar-thumb{background:var(--border-subtle);border-radius:3px}
+.sidebar::-webkit-scrollbar-thumb:hover,.scroll-wrap::-webkit-scrollbar-thumb:hover{background:var(--text-dim)}
+.sidebar,.scroll-wrap{scrollbar-width:thin;scrollbar-color:var(--border-subtle) transparent}

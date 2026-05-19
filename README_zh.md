@@ -4,6 +4,8 @@
 
 [English](README.md)
 
+<p align="center"><img src="preview.jpeg" alt="预览" width="80%"></p>
+
 ## 快速开始
 
 用现代浏览器打开 `luminance-demo.html`。无需服务器，无依赖。

@@ -49,6 +49,7 @@ const T_ZH={
   themeLight:'☀',themeDark:'☾',
   footer:'Ctrl+滚轮缩放 · 红色虚线外阴影区域输出时裁切 · 点击预览图定位Y坐标',
   leftSeq:'左序',rightSeq:'右序',
+  zoomOut:'缩小',zoomIn:'放大',zoomFitTitle:'还原缩放',
 };
 const T_EN={
   globalCtl:'Global Controls',fullness:'Fullness',vScale:'Vertical Scale',globalOffs:'Global Offset',stagger:'Stagger',
@@ -66,6 +67,7 @@ const T_EN={
   themeLight:'☀',themeDark:'☾',
   footer:'Ctrl+Scroll to zoom · Shaded areas cropped on export · Click preview to mark Y position',
   leftSeq:'Left Side',rightSeq:'Right Side',
+  zoomOut:'Zoom Out',zoomIn:'Zoom In',zoomFitTitle:'Reset Zoom',
 };
 let T=T_ZH;
 function switchLang(lang){T=Object.assign({},lang==='en'?T_EN:T_ZH);}

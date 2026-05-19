@@ -12,6 +12,9 @@ function init(){
   document.getElementById('exportJsonBtn').textContent=T.exportJSON;
   document.getElementById('importJsonBtn').textContent=T.importJSON;
   document.getElementById('fitBtn').textContent=T.fitBtn;
+  document.getElementById('zoomOutBtn').title=T.zoomOut;
+  document.getElementById('zoomInBtn').title=T.zoomIn;
+  document.getElementById('fitBtn').title=T.zoomFitTitle;
   document.getElementById('clearMarkerBtn').textContent=T.clearMarkerBtn;document.getElementById('clearMarkerBtn').title=T.clearMarkerTitle;
   document.getElementById('uploadBtn').textContent=T.upload;document.getElementById('clearRefBtn').textContent=T.clear;
   document.getElementById('footer').textContent=T.footer;

@@ -4,6 +4,8 @@ Generate smooth gradient wallpapers with six vertical strips and anisotropic col
 
 [中文说明](README_zh.md)
 
+<p align="center"><img src="preview.jpeg" alt="Preview" width="80%"></p>
+
 ## Quick Start
 
 Open `luminance-demo.html` in a modern browser. Zero dependencies.
