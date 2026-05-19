@@ -8,7 +8,7 @@ Generate smooth gradient wallpapers with six vertical strips and anisotropic col
 
 ## Quick Start
 
-Open `luminance-demo.html` in a modern browser. Zero dependencies.
+Open `luminancia.html` in a modern browser. Zero dependencies.
 
 ## Features
 
@@ -23,7 +23,7 @@ Open `luminance-demo.html` in a modern browser. Zero dependencies.
 ## Project Files
 
 ```
-luminance-demo.html   - Main app
+luminancia.html        - Main app
 css/style.css         - Styles with CSS custom properties
 js/config.js          - Constants, palette, locale
 js/params.js          - Parameters, preset, symmetry

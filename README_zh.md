@@ -8,7 +8,7 @@
 
 ## 快速开始
 
-用现代浏览器打开 `luminance-demo.html`。无需服务器，无依赖。
+用现代浏览器打开 `luminancia.html`。无需服务器，无依赖。
 
 ## 功能
 
@@ -23,7 +23,7 @@
 ## 项目文件
 
 ```
-luminance-demo.html   - 主页面
+luminancia.html        - 主页面
 css/style.css         - 样式 (CSS 变量实现日夜间主题)
 js/config.js          - 常量、色板、语言字典
 js/params.js          - 参数存储、预设方案、对称逻辑

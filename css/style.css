@@ -43,7 +43,7 @@ body{font-family:'InterVariable','Inter',sans-serif;background:var(--bg-body);co
 .main{flex:1;overflow:hidden;display:flex;flex-direction:column;background:var(--bg-main)}
 .toolbar{display:flex;gap:5px;align-items:center;padding:5px 10px;background:var(--bg-toolbar);border-bottom:1px solid var(--border-panel);flex-shrink:0;flex-wrap:wrap;font-size:13px}
 .toolbar button{padding:4px 8px;border:1px solid var(--btn-border);border-radius:4px;background:var(--btn-bg);color:#ccc;cursor:pointer;font-size:13px;transition:all .12s}
-.toolbar button:hover{background:#3a3a7e;color:#fff}
+.toolbar button:hover{background:var(--btn-hover);color:#fff}
 .toolbar select{padding:3px 5px;border:1px solid var(--btn-border);border-radius:4px;background:var(--bg-input);color:#ccc;font-size:13px}
 .toolbar select:focus{outline:none;border-color:var(--text-accent)}
 .toolbar .sep{width:1px;height:16px;background:var(--border-subtle);margin:0 4px}
