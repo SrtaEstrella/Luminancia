@@ -1,0 +1,21 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Inter font package (only fonts/ needed)
+Inter-4.1/
+
+# AI agent context (local only)
+CLAUDE.md
+
+# Export artifacts
+*.png
+*.jpg
+luminance-gmm-params.json
