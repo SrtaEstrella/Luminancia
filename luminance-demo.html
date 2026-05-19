@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luminancia - GMM v2</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <h2>Luminancia</h2>
+    <div style="display:flex;gap:4px">
+    <button onclick="toggleLang()" id="langBtn" class="header-btn">中</button>
+    <button onclick="toggleTheme()" id="themeBtn" class="header-btn"></button>
+    </div>
+  </div>
+  <div id="colorSection" style="padding:6px;margin-bottom:6px;background:var(--bg-panel);border-radius:5px;border-left:3px solid var(--text-orange)">
+    <div class="seg-header-text" id="colorHeader" onclick="document.getElementById('colorBody').style.display=document.getElementById('colorBody').style.display==='none'?'':'none'"></div>
+    <div id="colorBody">
+      <div style="display:flex;gap:4px;align-items:center;margin-bottom:4px">
+        <span class="color-label" id="colorCountLabel"></span>
+        <select id="nColors" onchange="onNColorsChange()" style="font-size:14px;background:var(--bg-input);color:var(--text);border:1px solid var(--border-subtle);border-radius:3px;padding:2px 4px">...</select>
+        <button onclick="randomizeColors()" id="randColorBtn" style="font-size:14px;padding:2px 8px;border:1px solid var(--border-subtle);border-radius:3px;background:var(--bg-input);color:var(--text);cursor:pointer"></button>
+        <button onclick="randomizeSeq()" id="randSeqBtn" style="font-size:14px;padding:2px 8px;border:1px solid var(--border-subtle);border-radius:3px;background:var(--bg-input);color:var(--text);cursor:pointer"></button>
+      </div>
+      <div id="activeColors" style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:4px"></div>
+      <div id="paletteGrid" style="display:none"></div>
+      <div style="display:flex;gap:8px">
+        <div><div class="seq-section-label" id="leftSeqLabel"></div><div id="lseqSlots" style="display:flex;gap:1px;flex-wrap:wrap"></div></div>
+        <div><div class="seq-section-label" id="rightSeqLabel"></div><div id="rseqSlots" style="display:flex;gap:1px;flex-wrap:wrap"></div></div>
+      </div>
+      <div class="color-hint" id="paletteHint"></div>
+    </div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="actions">
+    <button onclick="resetAll()" id="resetBtn"></button>
+    <button class="accent" onclick="exportWallpaper()" id="exportImgBtn"></button>
+    <button class="accent" onclick="doExport()" id="exportJsonBtn"></button>
+    <button onclick="importJSON()" id="importJsonBtn"></button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="doImport(event)">
+  </div>
+  <div id="params"></div>
+  <div class="jsonout" id="jsonout"></div>
+</div>
+
+<div class="main">
+  <div class="toolbar">
+    <button onclick="zoomOut()" title="缩小">-</button>
+    <span class="zoomlbl" id="zoomlbl">65%</span>
+    <button onclick="zoomIn()" title="放大">+</button>
+    <button onclick="zoomFit()" title="65%" id="fitBtn"></button>
+    <button onclick="zoom100()" title="100%">1:1</button>
+    <span class="sep"></span>
+    <span style="color:var(--text-dim)" id="previewLabel"></span>
+    <select id="viewMode" onchange="onViewChange()"></select>
+    <span class="sep"></span>
+    <button onclick="clearMarker()" id="clearMarkerBtn"></button>
+    <span class="sep"></span>
+    <span style="color:var(--text-dim)" id="refImageLabel"></span>
+    <input type="file" id="refFile" accept="image/*" style="display:none" onchange="loadRef(event)">
+    <button onclick="document.getElementById('refFile').click()" id="uploadBtn"></button>
+    <button onclick="clearRef()" id="clearRefBtn" style="display:none"></button>
+    <span class="fname" id="refName"></span>
+  </div>
+  <div class="scroll-wrap" id="scrollWrap">
+    <div class="columns" id="columns">
+        <div class="col" id="cv-col">
+            <canvas id="cv"></canvas>
+        </div>
+      <div class="col" id="ref-col" style="display:none">
+        <canvas id="refCv"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="foot" id="footer"></div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/params.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/ui-params.js"></script>
+<script src="js/ui-preview.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
