@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#1c1c1e"/>
+  <!-- Strips: LSEQ=[1,0,2] RSEQ=[2,1,0] → 1=white 0=orange 2=teal -->
+  <rect x="2" y="4" width="4" height="24" rx="2" fill="#ffffff"/>
+  <rect x="6.8" y="4" width="4" height="24" rx="2" fill="#ff9a56"/>
+  <rect x="11.6" y="4" width="4" height="24" rx="2" fill="#26ceaa"/>
+  <rect x="16.4" y="4" width="4" height="24" rx="2" fill="#26ceaa"/>
+  <rect x="21.2" y="4" width="4" height="24" rx="2" fill="#ffffff"/>
+  <rect x="26" y="4" width="4" height="24" rx="2" fill="#ff9a56"/>
+</svg>

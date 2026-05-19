@@ -5,7 +5,7 @@ window.onGlobalP=onGlobalP;window.clearMarker=clearMarker;
 window.isolateSegment=isolateSegment;window.clearIsolation=clearIsolation;window.exportWallpaper=exportWallpaper;window.onNColorsChange=onNColorsChange;window.randomizeSeq=randomizeSeq;window.toggleTheme=toggleTheme;window.toggleLang=toggleLang;window.randomizeColors=randomizeColors;
 
 function init(){
-  switchLang('en');_lang='en';const lb=document.getElementById('langBtn');lb.textContent='EN';lb.style.fontSize='12px';
+  switchLang('en');_lang='en';document.getElementById('langBtn').textContent='EN';
   document.documentElement.classList.add('light');document.getElementById('themeBtn').textContent=T.themeLight;
   document.getElementById('resetBtn').textContent=T.reset;
   document.getElementById('exportImgBtn').textContent=T.exportImg;
@@ -20,10 +20,9 @@ function init(){
   document.getElementById('footer').textContent=T.footer;
   document.getElementById('previewLabel').textContent=T.preview;
   document.getElementById('refImageLabel').textContent=T.refImage;
-  const vm=document.getElementById('viewMode');
-  vm.innerHTML='<option value="all">'+T.allStrips+'</option>';
-  for(let i=0;i<6;i++)vm.innerHTML+='<option value="'+i+'">'+T.stripN+(i+1)+'</option>';
-  genDefaults();buildStripTabs();buildSegmentUI();renderPreview(window._viewStrip);applyZoom();
+  buildViewMode();
+  initRulerDOM();genDefaults();buildStripTabs();buildSegmentUI();renderPreview(window._viewStrip);applyZoom();
+  document.fonts.ready.then(()=>renderGuidesOverlay(window._viewStrip));
   setTimeout(()=>{const wrap=document.getElementById("scrollWrap");const outputCenterY=((50+50)/200)*CONFIG.PH*zoomLevel;wrap.scrollTop=outputCenterY-wrap.clientHeight/2;wrap.scrollLeft=(wrap.scrollWidth-wrap.clientWidth)/2;},120);
   document.getElementById('cv').addEventListener('click',function(e){onCanvasClick(e,'cv');});
   document.getElementById('refCv').addEventListener('click',function(e){onCanvasClick(e,'refCv');});
