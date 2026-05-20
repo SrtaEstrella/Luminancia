@@ -1,4 +1,14 @@
 const RULER_W = 42;
+const GRAIN_RGB = 6; // legacy fallback, overridden by window._grainAmount
+
+function grain(x, y) {
+  var n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+  return n - Math.floor(n);
+}
+
+function clampByte(v) {
+  return Math.max(0, Math.min(255, v));
+}
 
 function cssColor(v) {
   return getComputedStyle(document.documentElement).getPropertyValue(v).trim();
@@ -116,9 +126,10 @@ function renderToCanvas(canvas, viewStrip) {
 
         const idx = (y * tw + x) * 4;
         if (twgt > 0.001) {
-          d[idx] = Math.round(r / twgt);
-          d[idx + 1] = Math.round(g / twgt);
-          d[idx + 2] = Math.round(b / twgt);
+          var gn = (grain(x, y) - 0.5) * (window._grainAmount || GRAIN_RGB);
+          d[idx] = clampByte(Math.round(r / twgt + gn));
+          d[idx + 1] = clampByte(Math.round(g / twgt + gn));
+          d[idx + 2] = clampByte(Math.round(b / twgt + gn));
         }
         d[idx + 3] = 255;
       }
@@ -127,6 +138,11 @@ function renderToCanvas(canvas, viewStrip) {
 
   ctx.putImageData(imageData, 0, 0);
 }
+
+// ... (in exportWallpaper, same pattern — update grain line there too)
+
+// Actually let me find and update the export path separately
+
 
 function renderGuidesOverlay(viewStrip) {
   const cv = document.getElementById('cv');
@@ -328,6 +344,17 @@ function renderPreview(viewStrip) {
   renderGuidesOverlay(viewStrip);
   document.getElementById('cv-col').style.width = cv.width + 'px';
   updateRulerDOM();
+
+  if (!window._initCentered) {
+    window._initCentered = true;
+    var wrap = document.getElementById('scrollWrap');
+    var Z = zoomLevel || 0.65;
+    var trim = getTrimPct();
+    var centerPct = (trim.top + trim.bot) / 2;
+    var centerY = ((centerPct + 50) / 200) * CONFIG.PH * Z;
+    wrap.scrollTop = centerY - wrap.clientHeight / 2;
+    wrap.scrollLeft = (wrap.scrollWidth - wrap.clientWidth) / 2;
+  }
 }
 
 function exportWallpaper() {
@@ -416,9 +443,10 @@ function exportWallpaper() {
 
         const idx = (y * fw + x) * 4;
         if (tw > 0.001) {
-          d[idx] = Math.round(r / tw);
-          d[idx + 1] = Math.round(g / tw);
-          d[idx + 2] = Math.round(b / tw);
+          var gn = (grain(x, y) - 0.5) * (window._grainAmount || GRAIN_RGB);
+          d[idx] = clampByte(Math.round(r / tw + gn));
+          d[idx + 1] = clampByte(Math.round(g / tw + gn));
+          d[idx + 2] = clampByte(Math.round(b / tw + gn));
         }
         d[idx + 3] = 255;
       }

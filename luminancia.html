@@ -18,9 +18,15 @@
     <button onclick="toggleTheme()" id="themeBtn" class="header-btn"></button>
     </div>
   </div>
+  <div class="sidebar-scroll">
   <div id="colorSection" class="card">
     <div class="card-header clk" id="colorHeader" onclick="var b=document.getElementById('colorBody');var s=b.style.display==='none';b.style.display=s?'':'none';this.closest('.card').classList.toggle('collapsed');this.textContent=(s?'▾':'▸')+' '+T.colorCustom"></div>
     <div id="colorBody">
+      <div class="control-row">
+        <span class="color-label" id="schemeLabel"></span>
+        <button onclick="importJSON()" id="importJsonBtn" class="btn-sm"></button>
+        <button onclick="doExport()" id="exportJsonBtn" class="btn-sm"></button>
+      </div>
       <div class="control-row">
         <span class="color-label" id="colorCountLabel"></span>
         <select id="nColors" onchange="onNColorsChange()" class="sel"></select>
@@ -37,15 +43,13 @@
     </div>
   </div>
   <div class="tabs" id="tabs"></div>
-  <div class="actions">
+  <div id="params"></div>
+  <input type="file" id="importFile" accept=".json" style="display:none" onchange="doImport(event)">
+  </div>
+  <div class="sidebar-footer">
     <button onclick="resetAll()" id="resetBtn"></button>
     <button class="accent" onclick="exportWallpaper()" id="exportImgBtn"></button>
-    <button class="accent" onclick="doExport()" id="exportJsonBtn"></button>
-    <button onclick="importJSON()" id="importJsonBtn"></button>
-    <input type="file" id="importFile" accept=".json" style="display:none" onchange="doImport(event)">
   </div>
-  <div id="params"></div>
-  <div class="jsonout" id="jsonout"></div>
 </div>
 
 <div class="main">

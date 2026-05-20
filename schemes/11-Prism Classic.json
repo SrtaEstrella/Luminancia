@@ -1,0 +1,585 @@
+{
+  "model": "anisotropic_gaussian_mixture",
+  "outputSize": {
+    "w": 1290,
+    "h": 2796
+  },
+  "renderHeight": 5592,
+  "stripCount": 6,
+  "segmentsPerStrip": 7,
+  "colors": [
+    [
+      228,
+      3,
+      3
+    ],
+    [
+      255,
+      140,
+      0
+    ],
+    [
+      255,
+      216,
+      0
+    ],
+    [
+      12,
+      138,
+      4
+    ],
+    [
+      34,
+      79,
+      147
+    ],
+    [
+      87,
+      2,
+      129
+    ],
+    [
+      1,
+      169,
+      170
+    ],
+    [
+      129,
+      0,
+      128
+    ],
+    [
+      231,
+      85,
+      130
+    ],
+    [
+      120,
+      184,
+      0
+    ],
+    [
+      189,
+      45,
+      140
+    ]
+  ],
+  "leftSeq": [
+    1,
+    0,
+    8,
+    10,
+    7,
+    5,
+    4
+  ],
+  "rightSeq": [
+    5,
+    4,
+    6,
+    3,
+    9,
+    2,
+    1
+  ],
+  "steps": [
+    {
+      "dcy": 15,
+      "dsy": 2
+    },
+    {
+      "dcy": 14,
+      "dsy": 6
+    },
+    {
+      "dcy": 12,
+      "dsy": -4
+    },
+    {
+      "dcy": 5,
+      "dsy": -3
+    },
+    {
+      "dcy": -5,
+      "dsy": -4
+    },
+    {
+      "dcy": -6,
+      "dsy": 4
+    },
+    {
+      "dcy": -15,
+      "dsy": 2
+    }
+  ],
+  "strips": [
+    {
+      "idx": 0,
+      "group": 0,
+      "colorSeq": [
+        "#2",
+        "#1",
+        "#9",
+        "#11",
+        "#8",
+        "#6",
+        "#5"
+      ],
+      "segments": [
+        {
+          "colorIdx": 1,
+          "centerY": -50,
+          "centerX": -0.5421885861220419,
+          "sigmaY": 10,
+          "sigmaX_ratio": 4.844820665434494,
+          "angle": -73.23138951579364,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 0,
+          "centerY": -10,
+          "centerX": 0.3330398422163455,
+          "sigmaY": 17,
+          "sigmaX_ratio": 4.836939312799626,
+          "angle": -53.79841196530161,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 8,
+          "centerY": 15,
+          "centerX": 0.42276687639806054,
+          "sigmaY": 28,
+          "sigmaX_ratio": 3.2933761906311334,
+          "angle": -34.77020228581867,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 10,
+          "centerY": 45,
+          "centerX": 0.08781238599233421,
+          "sigmaY": 22,
+          "sigmaX_ratio": 2.924522633003676,
+          "angle": 56.363737256193936,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 7,
+          "centerY": 75,
+          "centerX": 0.36548824972159466,
+          "sigmaY": 26,
+          "sigmaX_ratio": 3.8119104458915576,
+          "angle": 22.19274057157371,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 5,
+          "centerY": 100,
+          "centerX": -0.36445028644588007,
+          "sigmaY": 18,
+          "sigmaX_ratio": 4.467625436746564,
+          "angle": 33.077443763866654,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 4,
+          "centerY": 150,
+          "centerX": -0.6770212752089998,
+          "sigmaY": 14,
+          "sigmaX_ratio": 4.083061422726636,
+          "angle": 79.44964999393036,
+          "sharpness": 2.28295486232161
+        }
+      ]
+    },
+    {
+      "idx": 1,
+      "group": 0,
+      "colorSeq": [
+        "#2",
+        "#1",
+        "#9",
+        "#11",
+        "#8",
+        "#6",
+        "#5"
+      ],
+      "segments": [
+        {
+          "colorIdx": 1,
+          "centerY": -35,
+          "centerX": -0.5421885861220419,
+          "sigmaY": 12,
+          "sigmaX_ratio": 4.844820665434494,
+          "angle": -73.23138951579364,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 0,
+          "centerY": 4,
+          "centerX": 0.3330398422163455,
+          "sigmaY": 23,
+          "sigmaX_ratio": 4.836939312799626,
+          "angle": -53.79841196530161,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 8,
+          "centerY": 27,
+          "centerX": 0.42276687639806054,
+          "sigmaY": 24,
+          "sigmaX_ratio": 3.2933761906311334,
+          "angle": -34.77020228581867,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 10,
+          "centerY": 50,
+          "centerX": 0.08781238599233421,
+          "sigmaY": 19,
+          "sigmaX_ratio": 2.924522633003676,
+          "angle": 56.363737256193936,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 7,
+          "centerY": 70,
+          "centerX": 0.36548824972159466,
+          "sigmaY": 22,
+          "sigmaX_ratio": 3.8119104458915576,
+          "angle": 22.19274057157371,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 5,
+          "centerY": 94,
+          "centerX": -0.36445028644588007,
+          "sigmaY": 22,
+          "sigmaX_ratio": 4.467625436746564,
+          "angle": 33.077443763866654,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 4,
+          "centerY": 135,
+          "centerX": -0.6770212752089998,
+          "sigmaY": 16,
+          "sigmaX_ratio": 4.083061422726636,
+          "angle": 79.44964999393036,
+          "sharpness": 2.28295486232161
+        }
+      ]
+    },
+    {
+      "idx": 2,
+      "group": 0,
+      "colorSeq": [
+        "#2",
+        "#1",
+        "#9",
+        "#11",
+        "#8",
+        "#6",
+        "#5"
+      ],
+      "segments": [
+        {
+          "colorIdx": 1,
+          "centerY": -20,
+          "centerX": -0.5421885861220419,
+          "sigmaY": 14,
+          "sigmaX_ratio": 4.844820665434494,
+          "angle": -73.23138951579364,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 0,
+          "centerY": 18,
+          "centerX": 0.3330398422163455,
+          "sigmaY": 29,
+          "sigmaX_ratio": 4.836939312799626,
+          "angle": -53.79841196530161,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 8,
+          "centerY": 39,
+          "centerX": 0.42276687639806054,
+          "sigmaY": 20,
+          "sigmaX_ratio": 3.2933761906311334,
+          "angle": -34.77020228581867,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 10,
+          "centerY": 55,
+          "centerX": 0.08781238599233421,
+          "sigmaY": 16,
+          "sigmaX_ratio": 2.924522633003676,
+          "angle": 56.363737256193936,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 7,
+          "centerY": 65,
+          "centerX": 0.36548824972159466,
+          "sigmaY": 18,
+          "sigmaX_ratio": 3.8119104458915576,
+          "angle": 22.19274057157371,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 5,
+          "centerY": 88,
+          "centerX": -0.36445028644588007,
+          "sigmaY": 26,
+          "sigmaX_ratio": 4.467625436746564,
+          "angle": 33.077443763866654,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 4,
+          "centerY": 120,
+          "centerX": -0.6770212752089998,
+          "sigmaY": 18,
+          "sigmaX_ratio": 4.083061422726636,
+          "angle": 79.44964999393036,
+          "sharpness": 2.28295486232161
+        }
+      ]
+    },
+    {
+      "idx": 3,
+      "group": 1,
+      "colorSeq": [
+        "#6",
+        "#5",
+        "#7",
+        "#4",
+        "#10",
+        "#3",
+        "#2"
+      ],
+      "segments": [
+        {
+          "colorIdx": 5,
+          "centerY": -20,
+          "centerX": 0.5421885861220419,
+          "sigmaY": 14,
+          "sigmaX_ratio": 4.844820665434494,
+          "angle": 73.23138951579364,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 4,
+          "centerY": 18,
+          "centerX": -0.3330398422163455,
+          "sigmaY": 29,
+          "sigmaX_ratio": 4.836939312799626,
+          "angle": 53.79841196530161,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 6,
+          "centerY": 39,
+          "centerX": -0.42276687639806054,
+          "sigmaY": 20,
+          "sigmaX_ratio": 3.2933761906311334,
+          "angle": 34.77020228581867,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 3,
+          "centerY": 55,
+          "centerX": -0.08781238599233421,
+          "sigmaY": 16,
+          "sigmaX_ratio": 2.924522633003676,
+          "angle": -56.363737256193936,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 9,
+          "centerY": 65,
+          "centerX": -0.36548824972159466,
+          "sigmaY": 18,
+          "sigmaX_ratio": 3.8119104458915576,
+          "angle": -22.19274057157371,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 2,
+          "centerY": 88,
+          "centerX": 0.36445028644588007,
+          "sigmaY": 26,
+          "sigmaX_ratio": 4.467625436746564,
+          "angle": -33.077443763866654,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 1,
+          "centerY": 120,
+          "centerX": 0.6770212752089998,
+          "sigmaY": 18,
+          "sigmaX_ratio": 4.083061422726636,
+          "angle": -79.44964999393036,
+          "sharpness": 2.28295486232161
+        }
+      ]
+    },
+    {
+      "idx": 4,
+      "group": 1,
+      "colorSeq": [
+        "#6",
+        "#5",
+        "#7",
+        "#4",
+        "#10",
+        "#3",
+        "#2"
+      ],
+      "segments": [
+        {
+          "colorIdx": 5,
+          "centerY": -35,
+          "centerX": 0.5421885861220419,
+          "sigmaY": 12,
+          "sigmaX_ratio": 4.844820665434494,
+          "angle": 73.23138951579364,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 4,
+          "centerY": 4,
+          "centerX": -0.3330398422163455,
+          "sigmaY": 23,
+          "sigmaX_ratio": 4.836939312799626,
+          "angle": 53.79841196530161,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 6,
+          "centerY": 27,
+          "centerX": -0.42276687639806054,
+          "sigmaY": 24,
+          "sigmaX_ratio": 3.2933761906311334,
+          "angle": 34.77020228581867,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 3,
+          "centerY": 50,
+          "centerX": -0.08781238599233421,
+          "sigmaY": 19,
+          "sigmaX_ratio": 2.924522633003676,
+          "angle": -56.363737256193936,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 9,
+          "centerY": 70,
+          "centerX": -0.36548824972159466,
+          "sigmaY": 22,
+          "sigmaX_ratio": 3.8119104458915576,
+          "angle": -22.19274057157371,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 2,
+          "centerY": 94,
+          "centerX": 0.36445028644588007,
+          "sigmaY": 22,
+          "sigmaX_ratio": 4.467625436746564,
+          "angle": -33.077443763866654,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 1,
+          "centerY": 135,
+          "centerX": 0.6770212752089998,
+          "sigmaY": 16,
+          "sigmaX_ratio": 4.083061422726636,
+          "angle": -79.44964999393036,
+          "sharpness": 2.28295486232161
+        }
+      ]
+    },
+    {
+      "idx": 5,
+      "group": 1,
+      "colorSeq": [
+        "#6",
+        "#5",
+        "#7",
+        "#4",
+        "#10",
+        "#3",
+        "#2"
+      ],
+      "segments": [
+        {
+          "colorIdx": 5,
+          "centerY": -50,
+          "centerX": 0.5421885861220419,
+          "sigmaY": 10,
+          "sigmaX_ratio": 4.844820665434494,
+          "angle": 73.23138951579364,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 4,
+          "centerY": -10,
+          "centerX": -0.3330398422163455,
+          "sigmaY": 17,
+          "sigmaX_ratio": 4.836939312799626,
+          "angle": 53.79841196530161,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 6,
+          "centerY": 15,
+          "centerX": -0.42276687639806054,
+          "sigmaY": 28,
+          "sigmaX_ratio": 3.2933761906311334,
+          "angle": 34.77020228581867,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 3,
+          "centerY": 45,
+          "centerX": -0.08781238599233421,
+          "sigmaY": 22,
+          "sigmaX_ratio": 2.924522633003676,
+          "angle": -56.363737256193936,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 9,
+          "centerY": 75,
+          "centerX": -0.36548824972159466,
+          "sigmaY": 26,
+          "sigmaX_ratio": 3.8119104458915576,
+          "angle": -22.19274057157371,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 2,
+          "centerY": 100,
+          "centerX": 0.36445028644588007,
+          "sigmaY": 18,
+          "sigmaX_ratio": 4.467625436746564,
+          "angle": -33.077443763866654,
+          "sharpness": 2.28295486232161
+        },
+        {
+          "colorIdx": 1,
+          "centerY": 150,
+          "centerX": 0.6770212752089998,
+          "sigmaY": 14,
+          "sigmaX_ratio": 4.083061422726636,
+          "angle": -79.44964999393036,
+          "sharpness": 2.28295486232161
+        }
+      ]
+    }
+  ]
+}

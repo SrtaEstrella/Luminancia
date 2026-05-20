@@ -18,7 +18,7 @@ function presetAsDefault() {
     { cy: 150, L: 28 }
   ];
 
-  const p = 1.6 + Math.random() * 0.8;
+  const p = 2.0;
 
   const segCx = spec.map(function () {
     return (Math.random() - 0.5) * 1.0;
@@ -57,8 +57,18 @@ function presetAsDefault() {
     };
   }
 
+  // End segments: stronger side bias and horizontal stretch
+  _baseP0[0].cx = -(0.5 + Math.random() * 0.5);
+  _baseP0[0].ang = -(60 + Math.random() * 20);
+  _baseP0[0].sxr = 4.0 + Math.random() * 1.0;
+
+  _baseP0[6].cx = -(0.5 + Math.random() * 0.5);
+  _baseP0[6].ang = 60 + Math.random() * 20;
+  _baseP0[6].sxr = 4.0 + Math.random() * 1.0;
+
   window._globalOffset = 0;
   window._stagger = 0;
+  window._grainAmount = 6;
   window._aspectRatio = 19.5 / 9;
   window._vScale = 1;
   window._exportWidth = 1290;
@@ -110,21 +120,24 @@ function deriveAll() {
   // Color sequence is always determined by RSEQ; deriveAll handles shape only
 
   if (mode === 0) {
-    // X-Symmetry: 0->5, 1->4, 2->3, angle negated
+    // X-Symmetry: 0->5, 1->4, 2->3, cx negated, angle negated
     for (let g = 0; g < N; g++) {
       P[5][g] = {
         ..._baseP0[g],
+        cx: -_baseP0[g].cx,
         ang: -_baseP0[g].ang,
         cy: clamp(scy(_baseP0[g].cy) + offs + stag, -50, 150),
         sy: ssy(_baseP0[g].sy)
       };
       P[4][g] = {
         ...P[1][g],
+        cx: -P[1][g].cx,
         ang: -P[1][g].ang,
         cy: clamp(P[1][g].cy + stag, -50, 150)
       };
       P[3][g] = {
         ...P[2][g],
+        cx: -P[2][g].cx,
         ang: -P[2][g].ang,
         cy: clamp(P[2][g].cy + stag, -50, 150)
       };
@@ -149,12 +162,13 @@ function deriveAll() {
       }
     }
   } else if (mode === 3) {
-    // Center Symmetry: 0->5, 1->4, 2->3, segment order reversed, cy flipped, angle preserved
+    // Center Symmetry: 0->5, 1->4, 2->3, segment order reversed, cx negated, cy flipped
     for (let off = 0; off <= 2; off++) {
       for (let g = 0; g < N; g++) {
         const src = P[off][N - 1 - g];
         P[5 - off][g] = {
           ...src,
+          cx: -src.cx,
           cy: clamp(100 - src.cy + stag, -50, 150)
         };
       }
@@ -168,6 +182,41 @@ function clamp(v, lo, hi) {
 
 function genDefaults() {
   presetAsDefault();
+  syncSlidersFromState();
+  buildColorUI();
+  scheduleRender();
+}
+
+function syncSlidersFromState() {
+  var sliders = document.querySelectorAll('#params input[type=range]');
+  for (var i = 0; i < sliders.length; i++) {
+    var sl = sliders[i];
+    var k = sl.getAttribute('data-key');
+    var s = parseInt(sl.getAttribute('data-seg'));
+    var v;
+    if (k === 'grn') { v = window._grainAmount; }
+    else if (k === 'vsc') { v = window._vScale; }
+    else if (k === 'offs') { v = window._globalOffset; }
+    else if (k === 'p') {
+      v = _baseP0[0].p;
+      if (isNaN(v)) v = 2.0;
+    }
+    else {
+      var src = (k === 'dcy' || k === 'dsy') ? step[s] : _baseP0[s];
+      v = src && src[k] != null ? src[k] : 0;
+    }
+    if (v != null && !isNaN(v)) {
+      sl.value = v;
+      var em = sl.parentNode.querySelector('em');
+      if (em) {
+        if (k === 'grn') { em.textContent = v < 1 ? 'Off' : v.toFixed(1); }
+        else if (k === 'p' || k === 'vsc') { em.textContent = v.toFixed(2); }
+        else if (k === 'sxr' || k === 'cx') { em.textContent = v.toFixed(2); }
+        else if (k === 'ang') { em.textContent = v.toFixed(1) + '°'; }
+        else { em.textContent = v.toFixed(1) + '%'; }
+      }
+    }
+  }
 }
 
 function genRandom() {
@@ -177,6 +226,10 @@ function genRandom() {
   }
   randomGroup(0);
   randomGroup(5, -1);
+  deriveAll();
+  buildSegmentUI();
+  buildColorUI();
+  scheduleRender();
 }
 
 function randomGroup(start, dir) {

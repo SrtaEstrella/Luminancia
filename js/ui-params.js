@@ -54,6 +54,16 @@ function buildSegmentUI() {
       }
     },
     {
+      k: 'grn',
+      lbl: T.grain,
+      min: 0,
+      max: 12,
+      step: 0.5,
+      val: window._grainAmount,
+      fmt: function (v) { return v < 1 ? 'Off' : v.toFixed(1); },
+      on: function (v) { window._grainAmount = v; }
+    },
+    {
       k: 'vsc',
       lbl: T.vScale,
       min: 0.75,
@@ -101,6 +111,8 @@ function buildSegmentUI() {
     sl.max = cfg.max;
     sl.step = cfg.step;
     sl.value = cfg.val;
+    sl.setAttribute('data-key', cfg.k);
+    sl.setAttribute('data-seg', 0);
 
     sl.addEventListener('input', function () {
       var v = parseFloat(sl.value);
@@ -373,6 +385,8 @@ function buildSegmentUI() {
       sl.max = pd.max;
       sl.step = pd.step;
       sl.value = src[pd.k];
+      sl.setAttribute('data-key', pd.k);
+      sl.setAttribute('data-seg', g);
 
       sl.addEventListener('input', function (isStep, src, pd, seg, g) {
         return function () {
@@ -423,19 +437,14 @@ function doImport(e) {
     try {
       var data = JSON.parse(ev.target.result);
 
-      // Restore color palette
       if (data.colors) {
         ACTIVE_COLORS = data.colors.map(function (c) {
-          if (Array.isArray(c)) {
-            return c;
-          }
-          return c.match(/\d+/g).map(Number);
+          return Array.isArray(c) ? c : c.match(/\d+/g).map(Number);
         });
         ACTIVE_N = ACTIVE_COLORS.length;
         updateColorMeta();
       }
 
-      // Restore segment parameters
       if (data.strips && data.strips[0]) {
         var s0 = data.strips[0].segments;
         if (s0) {
@@ -451,7 +460,6 @@ function doImport(e) {
         }
       }
 
-      // Restore color sequences
       if (data.leftSeq) {
         LSEQ.splice(0, LSEQ.length, ...data.leftSeq.slice(0, CONFIG.NG));
       }
@@ -459,7 +467,6 @@ function doImport(e) {
         RSEQ.splice(0, RSEQ.length, ...data.rightSeq.slice(0, CONFIG.NG));
       }
 
-      // Restore step parameters
       if (data.steps) {
         for (var g = 0; g < Math.min(CONFIG.NG, data.steps.length); g++) {
           if (data.steps[g].dcy != null) step[g].dcy = data.steps[g].dcy;
@@ -484,28 +491,19 @@ function doImport(e) {
 function doExport() {
   var out = {
     model: 'anisotropic_gaussian_mixture',
-    outputSize: { w: CONFIG.OW, h: CONFIG.OH },
-    renderHeight: CONFIG.RH,
-    stripCount: CONFIG.NS,
-    segmentsPerStrip: CONFIG.NG,
     colors: ACTIVE_COLORS,
     leftSeq: LSEQ.slice(),
     rightSeq: RSEQ.slice(),
-    steps: step.map(function (s) {
-      return { dcy: s.dcy, dsy: s.dsy };
-    }),
+    steps: step.map(function (s) { return { dcy: s.dcy, dsy: s.dsy }; }),
     strips: exportParamsJSON()
   };
 
   var json = JSON.stringify(out, null, 2);
-  document.getElementById('jsonout').textContent = json;
-  document.getElementById('jsonout').classList.add('show');
-
   var blob = new Blob([json], { type: 'application/json' });
   var u = URL.createObjectURL(blob);
   var a = document.createElement('a');
   a.href = u;
-  a.download = 'luminance-gmm-params.json';
+  a.download = 'luminance-scheme.json';
   a.click();
   URL.revokeObjectURL(u);
 }
@@ -582,7 +580,35 @@ function showPalettePopup(anchor, slotIdx) {
   }
 
   pop.innerHTML = '<div class="popup-title">' + T.replaceColor + (slotIdx + 1) +
-    '<button class="eyedropper-btn">' + T.eyedropper + '</button></div>';
+    '<div class="popup-title-right">' +
+    '<span class="hex-hash">#</span>' +
+    '<input class="hex-input" maxlength="6" value="' + hx(ACTIVE_COLORS[slotIdx]).replace('#', '') + '">' +
+    '<button class="eyedropper-btn">' + T.eyedropper + '</button></div></div>';
+
+  var hexInput = pop.querySelector('.hex-input');
+  hexInput.oninput = function () {
+    var v = hexInput.value.replace(/^#/, '');
+    if (/^[0-9a-fA-F]{6}$/.test(v)) {
+      var r = parseInt(v.slice(0, 2), 16);
+      var g = parseInt(v.slice(2, 4), 16);
+      var b = parseInt(v.slice(4, 6), 16);
+      ACTIVE_COLORS[slotIdx] = [r, g, b];
+      updateColorMeta();
+      buildActiveColors();
+      buildSeqSlots();
+      updateSegmentDots();
+      deriveAll();
+      scheduleRender();
+    }
+  };
+  hexInput.onkeydown = function (e) {
+    if (e.key === 'Enter') {
+      pop.style.display = 'none';
+    }
+  };
+  hexInput.onclick = function (e) {
+    e.stopPropagation();
+  };
 
   var eyedropBtn = pop.querySelector('.eyedropper-btn');
   eyedropBtn.onclick = function (e) {

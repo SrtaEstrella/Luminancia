@@ -259,6 +259,7 @@ function toggleLang() {
   document.getElementById('exportImgBtn').textContent = T.exportImg;
   document.getElementById('exportJsonBtn').textContent = T.exportJSON;
   document.getElementById('importJsonBtn').textContent = T.importJSON;
+  document.getElementById('schemeLabel').textContent = T.schemeLabel;
   document.getElementById('fitBtn').textContent = T.fitBtn;
   document.getElementById('clearMarkerBtn').textContent = T.clearMarkerBtn;
   document.getElementById('clearMarkerBtn').title = T.clearMarkerTitle;

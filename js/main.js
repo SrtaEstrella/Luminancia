@@ -1,6 +1,5 @@
 // Expose global functions to inline onclick handlers
-window.resetAll = resetAll;
-window.randomizeAll = randomizeAll;
+window.resetAll = genDefaults;
 window.doExport = doExport;
 window.importJSON = importJSON;
 window.doImport = doImport;
@@ -41,6 +40,7 @@ function init() {
   document.getElementById('exportImgBtn').textContent = T.exportImg;
   document.getElementById('exportJsonBtn').textContent = T.exportJSON;
   document.getElementById('importJsonBtn').textContent = T.importJSON;
+  document.getElementById('schemeLabel').textContent = T.schemeLabel;
   document.getElementById('fitBtn').textContent = T.fitBtn;
   document.getElementById('zoomOutBtn').title = T.zoomOut;
   document.getElementById('zoomInBtn').title = T.zoomIn;
@@ -66,14 +66,6 @@ function init() {
   document.fonts.ready.then(function () {
     renderGuidesOverlay(window._viewStrip);
   });
-
-  // Scroll the preview to vertical center after layout
-  setTimeout(function () {
-    var wrap = document.getElementById('scrollWrap');
-    var outputCenterY = ((50 + 50) / 200) * CONFIG.PH * zoomLevel;
-    wrap.scrollTop = outputCenterY - wrap.clientHeight / 2;
-    wrap.scrollLeft = (wrap.scrollWidth - wrap.clientWidth) / 2;
-  }, 120);
 
   // Canvas click to place marker
   document.getElementById('cv').addEventListener('click', function (e) {
