@@ -86,14 +86,14 @@ function buildViewMode() {
     if (window._viewStrip === i) {
       btn.className = 'on';
     }
-    btn.onclick = (function (idx) {
+    btn.onclick = (function (idx, btnEl) {
       return function () {
         vm.querySelectorAll('button').forEach(function (b) { b.className = ''; });
-        btn.className = 'on';
+        btnEl.className = 'on';
         window._viewStrip = idx;
         scheduleRender();
       };
-    })(i);
+    })(i, btn);
     vm.appendChild(btn);
   }
 }
@@ -204,7 +204,29 @@ function onCanvasClick(e, cvId) {
   cvId = cvId || 'cv';
   var cv = document.getElementById(cvId);
   var rect = cv.getBoundingClientRect();
+
+  var scaleX = cv.width / rect.width;
   var scaleY = cv.height / rect.height;
+
+  // Eye-dropper mode: pick color from canvas
+  if (window._pickingSlot != null) {
+    var slotIdx = window._pickingSlot;
+    window._pickingSlot = null;
+    document.body.style.cursor = '';
+    var cx = Math.round((e.clientX - rect.left) * scaleX);
+    var cy = Math.round((e.clientY - rect.top) * scaleY);
+    var ctx = cv.getContext('2d');
+    var px = ctx.getImageData(Math.min(cx, cv.width - 1), Math.min(cy, cv.height - 1), 1, 1).data;
+    ACTIVE_COLORS[slotIdx] = [px[0], px[1], px[2]];
+    updateColorMeta();
+    buildActiveColors();
+    buildSeqSlots();
+    updateSegmentDots();
+    deriveAll();
+    scheduleRender();
+    return;
+  }
+
   var y = (e.clientY - rect.top) * scaleY;
   var pct = yToPct(y, cv.height);
   showMarker(pct);

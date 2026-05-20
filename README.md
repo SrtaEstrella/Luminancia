@@ -12,18 +12,18 @@ Open `luminancia.html` in a modern browser. Zero dependencies.
 
 ## Features
 
-- 2-12 custom colors from a 100-color palette
-- 4 aspect ratios + custom export resolution
+- 2-12 custom colors from a 100-color palette, with canvas dropper
+- Custom export resolution and aspect ratio
 - 4 symmetry modes: X, Translate, Y, Center
 - 7 Gaussian segments per strip with independent angle and spread
 - Day/night theme
-- Chinese/English locale
+- English/Chinese locale
 - Export PNG wallpaper and JSON presets
 
 ## Project Files
 
 ```
-luminancia.html        - Main app
+luminancia.html       - Main app
 css/style.css         - Styles with CSS custom properties
 js/config.js          - Constants, palette, locale
 js/params.js          - Parameters, preset, symmetry

@@ -556,6 +556,11 @@ function buildActiveColors() {
       e.stopPropagation();
       showPalettePopup(s, i);
     };
+    s.oncontextmenu = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showPalettePopup(s, i);
+    };
     g.appendChild(s);
   });
 }
@@ -576,7 +581,16 @@ function showPalettePopup(anchor, slotIdx) {
     }, { once: false });
   }
 
-  pop.innerHTML = '<div class="popup-title">' + T.replaceColor + (slotIdx + 1) + '</div>';
+  pop.innerHTML = '<div class="popup-title">' + T.replaceColor + (slotIdx + 1) +
+    '<button class="eyedropper-btn">' + T.eyedropper + '</button></div>';
+
+  var eyedropBtn = pop.querySelector('.eyedropper-btn');
+  eyedropBtn.onclick = function (e) {
+    e.stopPropagation();
+    pop.style.display = 'none';
+    window._pickingSlot = slotIdx;
+    document.body.style.cursor = 'crosshair';
+  };
 
   PALETTE.forEach(function (c, i) {
     var isSel = ACTIVE_COLORS[slotIdx] &&
@@ -632,6 +646,7 @@ function buildSeqSlots() {
         updateColorMeta();
         w.style.background = hx(ACTIVE_COLORS[next]);
         w.title = T.segTooltip + (i + 1) + ': #' + (next + 1);
+        updateSegmentDots();
         deriveAll();
         scheduleRender();
       };
@@ -674,6 +689,7 @@ function showSeqPopup(anchor, slotIdx, seq) {
       seq[slotIdx] = j;
       updateColorMeta();
       buildSeqSlots();
+      updateSegmentDots();
       deriveAll();
       scheduleRender();
       pop.style.display = 'none';
