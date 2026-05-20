@@ -21,7 +21,7 @@ body{font-family:'InterVariable','Inter',sans-serif;background:var(--bg-body);co
 
 /* ---- Sidebar ---- */
 .sidebar{width:460px;min-width:320px;height:100vh;overflow-y:auto;background:var(--bg-sidebar);padding:18px;font-size:15px;position:relative;box-shadow:1px 0 0 rgba(0,0,0,.15)}
-.sidebar::after{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;cursor:col-resize;z-index:10}
+.resize-handle{position:fixed;width:8px;cursor:ew-resize;z-index:50}
 .sidebar h2{font-size:22px;margin:0 0 10px;color:var(--text)}
 .sidebar-header{display:flex;align-items:center;justify-content:space-between}
 .sidebar-header-actions{display:flex;gap:4px}
@@ -41,7 +41,7 @@ body{font-family:'InterVariable','Inter',sans-serif;background:var(--bg-body);co
 
 /* ---- Labels ---- */
 .control-label,.param label{font-size:13px;color:var(--text);font-weight:450}
-.control-label{white-space:nowrap}
+.control-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
 .param label{display:flex;justify-content:space-between}
 .control-label em,.param label em{color:var(--text-dim);font-style:normal;font-variant-numeric:tabular-nums;font-size:13px}
 .color-label,.seq-section-label{font-size:13px;color:var(--text)}
@@ -49,7 +49,7 @@ body{font-family:'InterVariable','Inter',sans-serif;background:var(--bg-body);co
 .color-hint,.export-size{font-size:13px;color:var(--text-dim);margin-top:3px}
 
 /* ---- Control Row ---- */
-.control-row{display:flex;align-items:center;gap:4px;margin-bottom:6px}
+.control-row{display:flex;align-items:center;gap:4px;margin-bottom:6px;overflow:hidden}
 
 /* ---- Select ---- */
 .sel,.control-row select,.toolbar select{
@@ -59,7 +59,7 @@ body{font-family:'InterVariable','Inter',sans-serif;background:var(--bg-body);co
   background-repeat:no-repeat;padding-right:18px;
 }
 .sel{font-size:13px;border:1px solid var(--border-subtle);border-radius:5px;padding:2px 6px;background-position:right 5px center}
-.control-row select{flex:1;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:13px;border:1px solid var(--border-subtle);border-radius:5px;padding:2px 6px;background-position:right 6px center}
+.control-row select{flex:1;min-width:55px;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:13px;border:1px solid var(--border-subtle);border-radius:5px;padding:2px 6px;background-position:right 6px center}
 .toolbar select{font-size:12px;border:1px solid var(--btn-border);border-radius:5px;padding:2px 6px;background-position:right 5px center}
 .toolbar select:focus{outline:none;border-color:var(--text-accent)}
 select option{color:var(--text);background:var(--bg-input);font-size:13px}
@@ -84,16 +84,16 @@ select option{color:var(--text);background:var(--bg-input);font-size:13px}
 .tab.on{background:var(--tab-active)}
 
 /* ---- Segmented Control ---- */
-.seg-control{display:inline-flex;border-radius:7px;overflow:hidden;flex-shrink:0;align-items:stretch}
-.seg-control button{padding:3px 10px;border:none;background:var(--seg-bg);color:var(--text-dim);font-size:12px;cursor:pointer;transition:all .25s var(--trans-ease);position:relative;line-height:1.4}
+.seg-control{display:inline-flex;border-radius:7px;overflow:hidden;flex-shrink:1;min-width:0;align-items:stretch}
+.seg-control button{padding:3px 10px;border:none;background:var(--seg-bg);color:var(--text-dim);font-size:12px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex-shrink:1;transition:all .25s var(--trans-ease);position:relative;line-height:1.4}
 .seg-control button+button::before{content:'';position:absolute;left:0;top:5px;bottom:5px;width:1px;background:rgba(128,128,128,.2)}
 .seg-control button:hover{background:var(--seg-hover);color:var(--text)}
 .seg-control button.on{background:var(--seg-active)}
 .seg-control button.on::before{display:none}
 
 /* ---- Pill Group ---- */
-.pill-group{display:flex;gap:3px;flex-shrink:0;align-items:center}
-.pill-group button{padding:3px 7px;border:none;border-radius:5px;background:var(--seg-bg);color:var(--text-dim);font-size:11px;cursor:pointer;line-height:1.4}
+.pill-group{display:flex;gap:3px;flex-wrap:wrap;align-items:center}
+.pill-group button{padding:2px 6px;border:none;border-radius:5px;background:var(--seg-bg);color:var(--text-dim);font-size:10px;cursor:pointer;line-height:1.4}
 .pill-group button:hover{background:var(--seg-hover);color:var(--text)}
 .pill-group button.on{background:var(--seg-active)}
 

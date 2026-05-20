@@ -95,22 +95,36 @@ function init() {
     }
   }, { passive: false });
 
-  // Sidebar resize via drag handle
+  // Sidebar resize via drag handle (outside scroll container)
   var sidebar = document.querySelector('.sidebar');
+  var handle = document.createElement('div');
+  handle.className = 'resize-handle';
+  document.body.appendChild(handle);
+
   var resizing = false;
   var startX = 0;
   var startW = 0;
 
-  sidebar.addEventListener('mousedown', function (e) {
-    if (e.offsetX > sidebar.offsetWidth - 8) {
-      resizing = true;
-      startX = e.clientX;
-      startW = sidebar.offsetWidth;
-      e.preventDefault();
-    }
+  function updateHandlePos() {
+    var r = sidebar.getBoundingClientRect();
+    handle.style.top = r.top + 'px';
+    handle.style.left = (r.right - 4) + 'px';
+    handle.style.height = r.height + 'px';
+  }
+  updateHandlePos();
+  window.addEventListener('resize', updateHandlePos);
+  sidebar.addEventListener('scroll', updateHandlePos);
+
+  handle.addEventListener('mousedown', function (e) {
+    resizing = true;
+    startX = e.clientX;
+    startW = sidebar.offsetWidth;
+    updateHandlePos();
+    e.preventDefault();
   });
 
   document.addEventListener('mousemove', function (e) {
+    updateHandlePos();
     if (resizing) {
       var w = Math.max(320, startW + e.clientX - startX);
       sidebar.style.width = w + 'px';
