@@ -147,6 +147,8 @@ CONFIG.PW = Math.round(CONFIG.OW * CONFIG.RENDER_SCALE);
 CONFIG.PH = Math.round(CONFIG.RH * CONFIG.RENDER_SCALE);
 
 // Dynamic color state
+var ACTIVE_MIN = 2;
+var ACTIVE_MAX = 12;
 var ACTIVE_COLORS = [[180, 210, 240], [200, 180, 220], [170, 225, 200], [255, 220, 210]];
 var ACTIVE_N = 4;
 var LSEQ = [0, 1, 2, 3, 0, 1, 2];
@@ -170,10 +172,16 @@ var PARAM_DEFS = [
   { k: 'dsy', lbl: 'Δ sigmaY',  min: -20, max: 20,  step: 0.5,  fmt: function (v) { return v.toFixed(1) + '%'; } }
 ];
 
-// Legacy property getters for backward compatibility
+// Legacy property accessors — assign via splice to preserve array identity
 Object.defineProperty(CONFIG, 'COLORS', { get: function () { return ACTIVE_COLORS; } });
-Object.defineProperty(CONFIG, 'LSEQ', { get: function () { return LSEQ; } });
-Object.defineProperty(CONFIG, 'RSEQ', { get: function () { return RSEQ; } });
+Object.defineProperty(CONFIG, 'LSEQ', {
+  get: function () { return LSEQ; },
+  set: function (v) { LSEQ.splice(0, LSEQ.length, ...v); }
+});
+Object.defineProperty(CONFIG, 'RSEQ', {
+  get: function () { return RSEQ; },
+  set: function (v) { RSEQ.splice(0, RSEQ.length, ...v); }
+});
 
 CONFIG.COLOR_NAMES = [];
 CONFIG.COLOR_HEX = [];
@@ -223,7 +231,10 @@ var T_ZH = {
     '19.5:9 (iPhone/三星)',
     '20:9 (国产主流)',
     '20.5:9 (小米数字)',
-    '19.8:9 (华为Mate/Pura)'
+    '19.8:9 (华为Mate/Pura)',
+    '18:9',
+    '16:9',
+    '4:3'
   ],
   resPresets: ['1080', '1170', '1206', '1290', '1320', '1440'],
   custom: '自定义',
@@ -231,6 +242,7 @@ var T_ZH = {
   customResPrompt: '宽度:',
   replaceColor: '替换 #',
   eyedropper: '取色',
+  deleteColor: '删除',
   segTooltip: '色段',
   exportProgress: '导出中... ',
   exportProgress0: '导出中... 0%',
@@ -283,7 +295,10 @@ var T_EN = {
     '19.5:9 (iPhone/Samsung)',
     '20:9 (Pixel/OPPO/vivo/Moto)',
     '20.5:9 (Xiaomi flagship)',
-    '19.8:9 (Huawei Pura/Mate)'
+    '19.8:9 (Huawei Pura/Mate)',
+    '18:9',
+    '16:9',
+    '4:3'
   ],
   resPresets: ['1080', '1170', '1206', '1290', '1320', '1440'],
   custom: 'Custom',
@@ -291,6 +306,7 @@ var T_EN = {
   customResPrompt: 'Width:',
   replaceColor: 'Replace #',
   eyedropper: 'Pick',
+  deleteColor: 'Del',
   segTooltip: 'Seg',
   exportProgress: 'Exporting... ',
   exportProgress0: 'Exporting... 0%',

@@ -1,15 +1,6 @@
 const RULER_W = 42;
 const GRAIN_RGB = 6; // legacy fallback, overridden by window._grainAmount
 
-function grain(x, y) {
-  var n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
-  return n - Math.floor(n);
-}
-
-function clampByte(v) {
-  return Math.max(0, Math.min(255, v));
-}
-
 function cssColor(v) {
   return getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 }
@@ -381,8 +372,9 @@ function exportWallpaper() {
   const progress = document.createElement('div');
   progress.style.cssText =
     'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);' +
-    'background:#1a1a3a;color:#ccc;padding:12px 24px;border-radius:8px;' +
-    'z-index:99;font:13px InterVariable,Inter,sans-serif';
+    'background:rgba(28,28,30,.7);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);' +
+    'color:#f5f5f7;padding:16px 28px;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.2);' +
+    'z-index:99;font:13px/1.4 InterVariable,Inter,-apple-system,sans-serif;text-align:center';
   progress.textContent = T.exportProgress0;
   document.body.appendChild(progress);
 

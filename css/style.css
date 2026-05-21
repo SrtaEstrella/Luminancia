@@ -29,7 +29,6 @@ body{font-family:'InterVariable','Inter',sans-serif;background:var(--bg-body);co
 .sidebar-header-actions{display:flex;gap:4px}
 .header-btn{width:30px;height:30px;padding:0;border:1px solid var(--btn-border);border-radius:5px;background:var(--btn-bg);color:var(--text);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:-4px;font-weight:500}
 .header-btn:hover{background:var(--btn-hover)}
-.sidebar-footer{flex-shrink:0;display:flex;gap:8px;padding:10px 0 0}
 .sidebar-footer button{font-family:inherit;padding:8px 12px;border:1px solid var(--btn-border);border-radius:8px;background:var(--btn-bg);color:var(--text);cursor:pointer;font-size:13px;font-weight:500;flex:1}
 .sidebar-footer button:hover{background:var(--btn-hover)}
 .sidebar-footer .accent{background:var(--accent-fill);border-color:var(--accent-fill);color:#fff;flex:2}
@@ -64,6 +63,7 @@ body{font-family:'InterVariable','Inter',sans-serif;background:var(--bg-body);co
   background-repeat:no-repeat;padding-right:18px;
 }
 .sel{font-size:13px;border:1px solid var(--border-subtle);border-radius:5px;padding:2px 6px;background-position:right 5px center}
+#nColors{flex:none;width:56px}
 .control-row select{flex:1;min-width:55px;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:13px;border:1px solid var(--border-subtle);border-radius:5px;padding:2px 6px;background-position:right 6px center}
 .toolbar select{font-size:12px;border:1px solid var(--btn-border);border-radius:5px;padding:2px 6px;background-position:right 5px center}
 .toolbar select:focus{outline:none;border-color:var(--text-accent)}
@@ -178,22 +178,11 @@ select option{color:var(--text);background:var(--bg-input);font-size:13px}
 .hex-input:focus{outline:none;border-color:var(--text-accent)}
 .eyedropper-btn{height:20px;padding:0 6px;border:1px solid var(--btn-border);border-radius:4px;background:var(--btn-bg);color:var(--text-dim);font-size:10px;cursor:pointer;line-height:1;white-space:nowrap}
 .eyedropper-btn:hover{background:var(--btn-hover);color:var(--text)}
+.delete-btn{height:20px;padding:0 6px;border:1px solid rgba(255,59,48,.4);border-radius:4px;background:transparent;color:#ff3b30;font-size:10px;cursor:pointer;line-height:1;white-space:nowrap}
+.delete-btn:hover{background:rgba(255,59,48,.1)}
+.delete-btn:disabled{opacity:.3;cursor:default}
+.add-color-btn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px dashed var(--btn-border);border-radius:6px;color:var(--text-dim);font-size:16px;cursor:pointer;flex-shrink:0;line-height:1}
+.add-color-btn:hover{background:var(--btn-hover);color:var(--text)}
 .popup-swatch{display:inline-block;width:24px;height:24px;border-radius:3px;cursor:pointer;border:2px solid var(--border-subtle)}
 .popup-swatch.on{border-color:var(--text-orange)}
 
-/* ---- Scheme Popup (unused, kept for reference) ---- */
-.scheme-popup-title{font-size:12px;color:var(--text-dim);margin-bottom:4px}
-.scheme-popup-row{display:flex;gap:6px;min-width:260px}
-.scheme-popup-body{max-height:200px;overflow-y:auto}
-.scheme-input{flex:1;min-width:0;height:26px;padding:0 8px;border:1px solid var(--btn-border);border-radius:5px;background:var(--bg-input);color:var(--text);font-size:12px;font-family:InterVariable,Inter,sans-serif}
-.scheme-input:focus{outline:none;border-color:var(--text-accent)}
-.scheme-save-btn{height:26px;padding:0 12px;border:none;border-radius:5px;background:var(--accent-fill);color:#fff;font-size:12px;font-weight:500;cursor:pointer}
-.scheme-save-btn:hover{filter:brightness(1.15)}
-.scheme-paste-btn{width:100%;height:26px;border:1px solid var(--btn-border);border-radius:5px;background:var(--btn-bg);color:var(--text);font-size:11px;cursor:pointer}
-.scheme-paste-btn:hover{background:var(--btn-hover)}
-.scheme-list-item{padding:6px 8px;border-radius:4px;font-size:12px;color:var(--text);cursor:pointer}
-.scheme-list-item:hover{background:var(--seg-hover)}
-.scheme-empty{font-size:12px;color:var(--text-dim);text-align:center;padding:12px 0}
-.scheme-paste-area{width:100%;height:100px;padding:6px;border:1px solid var(--btn-border);border-radius:5px;background:var(--bg-input);color:var(--text);font-size:11px;font-family:monospace;resize:vertical;box-sizing:border-box}
-.scheme-load-btn{height:26px;padding:0 12px;border:none;border-radius:5px;background:var(--accent-fill);color:#fff;font-size:12px;font-weight:500;cursor:pointer}
-.scheme-load-btn:hover{filter:brightness(1.15)}

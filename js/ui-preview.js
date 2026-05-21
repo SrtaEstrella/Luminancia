@@ -256,7 +256,7 @@ function toggleLang() {
   buildColorUI();
 
   document.getElementById('resetBtn').textContent = T.reset;
-  document.getElementById('exportImgBtn').textContent = T.exportImg;
+  updateExportBtnText();
   document.getElementById('exportJsonBtn').textContent = T.exportJSON;
   document.getElementById('importJsonBtn').textContent = T.importJSON;
   document.getElementById('schemeLabel').textContent = T.schemeLabel;

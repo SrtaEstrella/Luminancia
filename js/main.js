@@ -1,5 +1,5 @@
 // Expose global functions to inline onclick handlers
-window.resetAll = genDefaults;
+window.resetAll = resetAll;
 window.doExport = doExport;
 window.importJSON = importJSON;
 window.doImport = doImport;
@@ -37,7 +37,6 @@ function init() {
 
   // Set button and label text from locale
   document.getElementById('resetBtn').textContent = T.reset;
-  document.getElementById('exportImgBtn').textContent = T.exportImg;
   document.getElementById('exportJsonBtn').textContent = T.exportJSON;
   document.getElementById('importJsonBtn').textContent = T.importJSON;
   document.getElementById('schemeLabel').textContent = T.schemeLabel;
@@ -57,6 +56,7 @@ function init() {
   buildViewMode();
   initRulerDOM();
   genDefaults();
+  updateExportBtnText();
   buildStripTabs();
   buildSegmentUI();
   renderPreview(window._viewStrip);
